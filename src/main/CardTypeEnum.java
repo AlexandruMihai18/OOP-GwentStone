@@ -1,6 +1,10 @@
 package main;
 
 public class CardTypeEnum {
+    public static final String SENTINEL = "Sentinel";
+    public static final String BERSERKER = "Berserker";
+    public static final String GOLIATH = "Goliath";
+    public static final String WARDEN = "Warden";
     public static final String THE_RIPPER = "The Ripper";
     public static final String MIRAJ = "Miraj";
     public static final String THE_CURSED_ONE = "The Cursed One";

@@ -72,7 +72,8 @@ public final class Main {
         //TODO add here the entry point to your implementation
         Server.getServer().resetServer();
         Server.getServer().uploadData(inputData);
-        Server.getServer().write(output);
+        Server.getServer().startServer();
+        Server.getServer().makeArrayResult(output);
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);

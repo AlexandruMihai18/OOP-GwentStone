@@ -2,6 +2,7 @@ package main;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.Input;
+import main.Actions.Action;
 
 import java.util.ArrayList;
 
@@ -36,25 +37,34 @@ public class Server {
         startGames();
     }
 
+    public Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
+
     public void setPlayerOne() {
-        playerOne.setNrCardsInDeck(input.getPlayerOneDecks().getNrCardsInDeck());
-        playerOne.setNrDecks(input.getPlayerOneDecks().getNrDecks());
-        // playerOne.setDecks(input.getPlayerOneDecks().getDecks());
+        playerOne = new Player(input.getPlayerOneDecks());
     }
 
     public void setPlayerTwo() {
-        playerTwo.setNrCardsInDeck(input.getPlayerTwoDecks().getNrCardsInDeck());
-        playerTwo.setNrDecks(input.getPlayerTwoDecks().getNrDecks());
-        // playerTwo.setDecks(input.getPlayerTwoDecks().getDecks());
+        playerTwo = new Player(input.getPlayerTwoDecks());
     }
 
     public void startGames() {
         for (int i = 0; i < input.getGames().size(); i++) {
-            // games.add(input.getGames().get(i));
+            games.add(new Game(input.getGames().get(i)));
+            games.get(i).play();
         }
     }
 
-    public void write(ArrayNode output) {
-        // this.output = output;
+    public void makeArrayResult(ArrayNode output) {
+        for (Game game : games) {
+            for (int j = 0; j < game.getActions().size(); j++) {
+                // output.add(games.get(i).getActions().get(j).makeArrayResult());
+            }
+        }
     }
 }
