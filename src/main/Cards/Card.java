@@ -21,6 +21,15 @@ public abstract class Card {
         this.name = card.getName();
     }
 
+    public Card(Card card) {
+        this.mana = card.getMana();
+        this.health = card.getHealth();
+        this.attackDamage = card.getAttackDamage();
+        this.description = card.getDescription();
+        this.colors = card.getColors();
+        this.name = card.getName();
+    }
+
     public int getMana() {
         return mana;
     }
@@ -70,4 +79,16 @@ public abstract class Card {
     }
 
     public abstract void action();
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "mana=" + mana +
+                ", attackDamage=" + attackDamage +
+                ", health=" + health +
+                ", description='" + description + '\'' +
+                ", colors=" + colors +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

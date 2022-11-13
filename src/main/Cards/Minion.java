@@ -4,10 +4,17 @@ import fileio.CardInput;
 
 public class Minion extends Card {
     private boolean frozen;
-    private boolean taunt;
+    private boolean taunt = false;
+    private int requiredRow;
 
-    public Minion(CardInput card) {
+    public Minion(CardInput card, int requiredRow) {
         super(card);
+        this.requiredRow = requiredRow;
+    }
+    public Minion(CardInput card, boolean taunt, int requiredRow) {
+        super(card);
+        this.taunt = taunt;
+        this.requiredRow = requiredRow;
     }
 
     public boolean isFrozen() {
