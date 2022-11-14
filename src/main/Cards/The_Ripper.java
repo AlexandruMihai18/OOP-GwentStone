@@ -7,7 +7,7 @@ public class The_Ripper extends Minion{
         super(card, requiredRow);
     }
 
-    public void action() {
-
+    public void ability(Card card) {
+        card.setAttackDamage(-2);
     }
 }

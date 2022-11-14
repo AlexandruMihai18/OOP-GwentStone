@@ -7,7 +7,9 @@ public class Miraj extends Minion{
         super(card, requiredRow);
     }
 
-    public void action() {
-
+    public void ability(Card card) {
+        int tmp = this.getHealth();
+        this.setHealth(-tmp + card.getHealth());
+        card.setHealth(-card.getHealth() + tmp);
     }
 }

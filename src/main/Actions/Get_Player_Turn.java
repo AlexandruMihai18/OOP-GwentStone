@@ -11,14 +11,13 @@ public class Get_Player_Turn extends Action{
 
     public void action(Board board) {}
 
-
     public void setOutput(Game game) {
-         this.output = game.getBoard().getTurn();
+         getOutput().put("command", getCommand());
+         getOutput().put("playerTurn", game.getBoard().getTurn());
     }
 
     @Override
-    public String toString() {
-        return "command=" + this.getCommand()
-                + "output=" + output;
+    public void setError(String error) {
+
     }
 }

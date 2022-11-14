@@ -2,10 +2,7 @@ package main;
 
 import fileio.ActionsInput;
 import fileio.GameInput;
-import main.Actions.Action;
-import main.Actions.Get_Player_Deck;
-import main.Actions.Get_Player_Hero;
-import main.Actions.Get_Player_Turn;
+import main.Actions.*;
 import main.Cards.Card;
 import main.Cards.Hero;
 
@@ -17,8 +14,8 @@ public class Game {
     private GameStart gameStart;
     private ArrayList<Card> playerOneDeck;
     private ArrayList<Card> playerTwoDeck;
-    private Card playerOneHero;
-    private Card playerTwoHero;
+    private Hero playerOneHero;
+    private Hero playerTwoHero;
     private Board board = new Board();
     private final ArrayList<Action> actions = new ArrayList<>();
 
@@ -31,6 +28,8 @@ public class Game {
         setActions(gameStart.getActions());
         setPlayerOneDeck();
         setPlayerTwoDeck();
+        setPlayerOneHero();
+        setPlayerTwoHero();
     }
 
     public GameStart getGameStart() {
@@ -61,6 +60,14 @@ public class Game {
             case GET_PLAYER_DECK -> new Get_Player_Deck(action);
             case GET_PLAYER_HERO -> new Get_Player_Hero(action);
             case GET_PLAYER_TURN -> new Get_Player_Turn(action);
+            case GET_CARDS_IN_HAND -> new Get_Cards_In_Hand(action);
+            case END_PLAYER_TURN -> new End_Player_Turn(action);
+            case PLACE_CARD -> new Place_Card(action);
+            case GET_PLAYER_MANA -> new Get_Player_Mana(action);
+            case GET_CARDS_ON_TABLE -> new Get_Cards_On_Table(action);
+            case GET_CARD_AT_POSITION -> new Get_Card_At_Position(action);
+            case GET_ENVIRONMENT_CARDS_IN_HAND -> new Get_Environment_Cards_In_Hand(action);
+            case USE_ENVIRONMENT_CARD -> new Use_Environment_Card(action);
             default -> null;
         };
     }
@@ -75,21 +82,46 @@ public class Game {
 
     public void setPlayerOneDeck () {
         playerOneDeck = new ArrayList<>(Server.getServer().getPlayerOne().getDecks().get(gameStart.getPlayerOneDeckIdx()));
-        System.out.println(playerOneDeck);
     }
 
     public void setPlayerTwoDeck () {
         playerTwoDeck = new ArrayList<>(Server.getServer().getPlayerTwo().getDecks().get(gameStart.getPlayerTwoDeckIdx()));
     }
 
+    public Hero getPlayerOneHero() {
+        return playerOneHero;
+    }
+
+    public void setPlayerOneHero() {
+        playerOneHero = new Hero(gameStart.getPlayerOneHero());
+        playerOneHero.setHealth(30);
+    }
+
+    public Hero getPlayerTwoHero() {
+        return playerTwoHero;
+    }
+
+    public void setPlayerTwoHero() {
+        playerTwoHero = new Hero(gameStart.getPlayerOneHero());
+        playerTwoHero.setHealth(30);
+    }
+
+
     public void play () {
         board.setPlayerOneDeck(playerOneDeck, gameStart.getShuffleSeed());
         board.setPlayerTwoDeck(playerTwoDeck, gameStart.getShuffleSeed());
-        board.setPlayerOneHero(new Hero(gameStart.getPlayerOneHero()));
-        board.setPlayerTwoHero(new Hero(gameStart.getPlayerTwoHero()));
+        board.setPlayerOneHero(new Hero(playerOneHero));
+        board.setPlayerTwoHero(new Hero(playerTwoHero));
+        board.setTurn(gameStart.getStartingPlayer());
+        board.setPlayerOneMana(board.getManaGiven());
+        board.setPlayerOneHand();
+        board.setPlayerTwoMana(board.getManaGiven());
+        board.setPlayerTwoHand();
+
         for (Action action : actions) {
             action.action(board);
             action.setOutput(this);
+            action.cleanBoard(board);
         }
     }
 }

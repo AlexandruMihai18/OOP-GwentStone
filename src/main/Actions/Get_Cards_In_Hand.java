@@ -4,29 +4,31 @@ import fileio.ActionsInput;
 import main.Board;
 import main.Game;
 
-
-
-public class Get_Player_Deck extends Action{
-    public Get_Player_Deck(ActionsInput action) {
+public class Get_Cards_In_Hand extends Action{
+    public Get_Cards_In_Hand(ActionsInput action) {
         super(action);
     }
 
-    public void action(Board board) {}
-
+    @Override
     public void setOutput(Game game) {
         getOutput().put("command", getCommand());
         getOutput().put("playerIdx", getPlayerIdx());
         switch (this.getPlayerIdx()) {
             case 1:
-                getOutput().put("output", game.getBoard().getPlayerOneDeck().toString());
+                getOutput().put("output", game.getBoard().getPlayerOneHand().toString());
                 break;
             case 2:
-                getOutput().put("output", game.getBoard().getPlayerTwoDeck().toString());
+                getOutput().put("output", game.getBoard().getPlayerTwoHand().toString());
         }
     }
 
     @Override
     public void setError(String error) {
+
+    }
+
+    @Override
+    public void action(Board board) {
 
     }
 }

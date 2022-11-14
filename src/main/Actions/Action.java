@@ -1,8 +1,11 @@
 package main.Actions;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import fileio.Coordinates;
 import main.Board;
+import main.Cards.Minion;
 import main.Game;
 
 public abstract class Action {
@@ -14,7 +17,9 @@ public abstract class Action {
     private int playerIdx;
     private int x;
     private int y;
-    protected Object output;
+
+    private ObjectMapper mapper = new ObjectMapper();
+    private ObjectNode output = mapper.createObjectNode();
 
     public Action(ActionsInput action) {
         this.command = action.getCommand();
@@ -91,11 +96,28 @@ public abstract class Action {
         this.y = y;
     }
 
-    public Object getOutput() {
+    public ObjectNode getOutput() {
         return output;
     }
 
     public abstract void setOutput(Game game);
 
+    public abstract void setError(String error);
+
     public abstract void action(Board board);
+
+    public void cleanBoard(Board board) {
+        board.getPlayerTwoBackLane().removeIf(minion -> minion.getHealth() <= 0);
+        board.getPlayerTwoFrontLane().removeIf(minion -> minion.getHealth() <= 0);
+        board.getPlayerOneFrontLane().removeIf(minion -> minion.getHealth() <= 0);
+        board.getPlayerOneBackLane().removeIf(minion -> minion.getHealth() <= 0);
+    }
+
+    public int checkVictory(Board board) {
+        if (board.getPlayerOneHero().getHealth() <= 0)
+            return 2;
+        if (board.getPlayerTwoHero().getHealth() <= 0)
+            return 1;
+        return 0;
+    }
 }

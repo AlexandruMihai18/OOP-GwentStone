@@ -1,16 +1,23 @@
 package main.Cards;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.CardInput;
+import main.Board;
 
 import java.util.ArrayList;
 
 public abstract class Card {
+    private String type;
     private int mana;
     private int attackDamage;
     private int health;
     private String description;
     private ArrayList<String> colors;
     private String name;
+
+    private ObjectMapper mapper = new ObjectMapper();
+    private ObjectNode cardOutput = mapper.createObjectNode();
 
     public Card(CardInput card) {
         this.mana = card.getMana();
@@ -22,6 +29,7 @@ public abstract class Card {
     }
 
     public Card(Card card) {
+        this.type = card.getType();
         this.mana = card.getMana();
         this.health = card.getHealth();
         this.attackDamage = card.getAttackDamage();
@@ -30,12 +38,20 @@ public abstract class Card {
         this.name = card.getName();
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public int getMana() {
         return mana;
     }
 
     public void setMana(int mana) {
-        this.mana = mana;
+        this.mana += mana;
     }
 
     public int getAttackDamage() {
@@ -43,7 +59,7 @@ public abstract class Card {
     }
 
     public void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
+        this.attackDamage += attackDamage;
     }
 
     public int getHealth() {
@@ -51,7 +67,7 @@ public abstract class Card {
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        this.health += health;
     }
 
     public String getDescription() {
@@ -78,17 +94,12 @@ public abstract class Card {
         this.name = name;
     }
 
-    public abstract void action();
-
-    @Override
-    public String toString() {
-        return "Card{" +
-                "mana=" + mana +
-                ", attackDamage=" + attackDamage +
-                ", health=" + health +
-                ", description='" + description + '\'' +
-                ", colors=" + colors +
-                ", name='" + name + '\'' +
-                '}';
+    public ObjectNode getCardOutput() {
+        return cardOutput;
     }
+
+    public abstract void ability(ArrayList<Minion> row);
+
+    public abstract void showCard();
+
 }
