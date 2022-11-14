@@ -6,7 +6,7 @@ public class Disciple extends Minion{
     public Disciple(CardInput card, int requiredRow) {
         super(card, requiredRow);
     }
-    public void action() {
-
+    public void ability(Card card) {
+        card.setHealth(2);
     }
 }

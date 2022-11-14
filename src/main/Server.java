@@ -2,7 +2,6 @@ package main;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.Input;
-import main.Actions.Action;
 
 import java.util.ArrayList;
 
@@ -12,8 +11,7 @@ public class Server {
     private Input input;
     private Player playerOne;
     private Player playerTwo;
-    private ArrayList<Game> games;
-    private ArrayList<Action> output;
+    private final ArrayList<Game> games = new ArrayList<>();
 
     private Server() {}
 
@@ -63,7 +61,8 @@ public class Server {
     public void makeArrayResult(ArrayNode output) {
         for (Game game : games) {
             for (int j = 0; j < game.getActions().size(); j++) {
-                // output.add(games.get(i).getActions().get(j).makeArrayResult());
+                if (game.getActions().get(j).getOutput() != null)
+                    output.add(game.getActions().get(j).getOutput());
             }
         }
     }

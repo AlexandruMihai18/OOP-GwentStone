@@ -1,6 +1,8 @@
 package main;
 
 import main.Cards.Card;
+import main.Cards.Minion;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -13,15 +15,16 @@ public class Board{
     private ArrayList<Card> playerTwoDeck;
     private Card playerOneHero;
     private Card playerTwoHero;
-    private int playerOneMana;
-    private int playerTwoMana;
-    private static int manaGiven = 1;
+    private int playerOneMana = 0;
+    private int playerTwoMana = 0;
+    private int manaGiven = 1;
+    private int turnCounter = 0;
     private int turn;
-    private Card[][] lanes = new Card[4][5];
+    private ArrayList<Minion> playerOneBackLane = new ArrayList<>();
+    private ArrayList<Minion> playerOneFrontLane = new ArrayList<>();
+    private ArrayList<Minion> playerTwoFrontLane = new ArrayList<>();
+    private ArrayList<Minion> playerTwoBackLane = new ArrayList<>();
 
-    public void setBoard() {
-
-    }
     public ArrayList<Card> getPlayerOneHand() {
         return playerOneHand;
     }
@@ -35,7 +38,7 @@ public class Board{
     }
 
     public void setPlayerTwoHand() {
-        playerOneHand.add(playerOneDeck.remove(0));
+        playerTwoHand.add(playerTwoDeck.remove(0));
     }
 
     public ArrayList<Card> getPlayerOneDeck() {
@@ -72,12 +75,13 @@ public class Board{
         this.playerTwoHero = playerTwoHero;
     }
 
-    public static int getManaGiven() {
+    public int getManaGiven() {
         return manaGiven;
     }
 
-    public static void setManaGiven(int manaGiven) {
-        Board.manaGiven = manaGiven;
+    public void setManaGiven() {
+        if (manaGiven < 10)
+            manaGiven++;
     }
 
     public int getTurn() {
@@ -88,11 +92,43 @@ public class Board{
         this.turn = turn;
     }
 
-    public Card[][] getLanes() {
-        return lanes;
+    public int getPlayerOneMana() {
+        return playerOneMana;
     }
 
-    public void setLanes(Card[][] lanes) {
-        this.lanes = lanes;
+    public void setPlayerOneMana(int playerOneMana) {
+        this.playerOneMana += playerOneMana;
+    }
+
+    public int getPlayerTwoMana() {
+        return playerTwoMana;
+    }
+
+    public void setPlayerTwoMana(int playerTwoMana) {
+        this.playerTwoMana += playerTwoMana;
+    }
+
+    public int getTurnCounter() {
+        return turnCounter;
+    }
+
+    public void setTurnCounter() {
+        turnCounter++;
+    }
+
+    public ArrayList<Minion> getPlayerOneBackLane() {
+        return playerOneBackLane;
+    }
+
+    public ArrayList<Minion> getPlayerOneFrontLane() {
+        return playerOneFrontLane;
+    }
+
+    public ArrayList<Minion> getPlayerTwoFrontLane() {
+        return playerTwoFrontLane;
+    }
+
+    public ArrayList<Minion> getPlayerTwoBackLane() {
+        return playerTwoBackLane;
     }
 }
