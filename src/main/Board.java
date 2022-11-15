@@ -1,6 +1,7 @@
 package main;
 
 import main.Cards.Card;
+import main.Cards.Hero;
 import main.Cards.Minion;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class Board{
     private ArrayList<Minion> playerOneFrontLane = new ArrayList<>();
     private ArrayList<Minion> playerTwoFrontLane = new ArrayList<>();
     private ArrayList<Minion> playerTwoBackLane = new ArrayList<>();
+
+    private int victory = 0;
 
     public ArrayList<Card> getPlayerOneHand() {
         return playerOneHand;
@@ -64,7 +67,7 @@ public class Board{
     }
 
     public void setPlayerOneHero(Card playerOneHero) {
-        this.playerOneHero = playerOneHero;
+        this.playerOneHero = new Hero(playerOneHero);
     }
 
     public Card getPlayerTwoHero() {
@@ -72,7 +75,7 @@ public class Board{
     }
 
     public void setPlayerTwoHero(Card playerTwoHero) {
-        this.playerTwoHero = playerTwoHero;
+        this.playerTwoHero = new Hero(playerTwoHero);
     }
 
     public int getManaGiven() {
@@ -130,5 +133,23 @@ public class Board{
 
     public ArrayList<Minion> getPlayerTwoBackLane() {
         return playerTwoBackLane;
+    }
+
+    public int getVictory() {
+        return victory;
+    }
+
+    public void clearBoard() {
+        playerOneBackLane.removeIf(minion -> (minion.getHealth() <= 0));
+        playerOneFrontLane.removeIf(minion -> (minion.getHealth() <= 0));
+        playerTwoFrontLane.removeIf(minion -> (minion.getHealth() <= 0));
+        playerTwoBackLane.removeIf(minion -> (minion.getHealth() <= 0));
+    }
+
+    public void checkVictory() {
+        if (playerOneHero.getHealth() <= 0)
+            victory = 2;
+        if (playerTwoHero.getHealth() <= 0)
+            victory = 1;
     }
 }

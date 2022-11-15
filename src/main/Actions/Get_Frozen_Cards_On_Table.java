@@ -2,6 +2,7 @@ package main.Actions;
 
 import fileio.ActionsInput;
 import main.Board;
+import main.Cards.Card;
 import main.Cards.Minion;
 import main.Game;
 
@@ -14,7 +15,7 @@ public class Get_Frozen_Cards_On_Table extends Action{
 
     @Override
     public void setOutput(Game game) {
-        ArrayList<Minion> minionsFrozen = new ArrayList<>();
+        ArrayList<Card> minionsFrozen = new ArrayList<>();
 
         for (Minion minion : game.getBoard().getPlayerTwoBackLane()) {
             if (minion.isFrozen())
@@ -37,7 +38,8 @@ public class Get_Frozen_Cards_On_Table extends Action{
         }
 
         getOutput().put("command", getCommand());
-        getOutput().put("output", minionsFrozen.toString());
+        showArray(minionsFrozen);
+        getOutput().put("output", getDeckOutput());
     }
 
     @Override

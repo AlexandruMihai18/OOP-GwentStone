@@ -1,6 +1,7 @@
 package main.Cards;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.CardInput;
 import main.Board;
@@ -12,10 +13,9 @@ public abstract class Card {
     private int mana;
     private int attackDamage;
     private int health;
-    private String description;
-    private ArrayList<String> colors;
+    private final String description;
+    private final ArrayList<String> colors;
     private String name;
-
     private ObjectMapper mapper = new ObjectMapper();
     private ObjectNode cardOutput = mapper.createObjectNode();
 
@@ -74,16 +74,8 @@ public abstract class Card {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public ArrayList<String> getColors() {
         return colors;
-    }
-
-    public void setColors(ArrayList<String> colors) {
-        this.colors = colors;
     }
 
     public String getName() {
@@ -98,8 +90,21 @@ public abstract class Card {
         return cardOutput;
     }
 
-    public abstract void ability(ArrayList<Minion> row);
+    public abstract void ability(Board board, int row);
+
+    public ObjectNode printCard() {
+        showCard();
+        return cardOutput;
+    }
 
     public abstract void showCard();
+
+    public ArrayNode formatColors() {
+        ArrayNode colorsNode = mapper.createArrayNode();
+        for (String color : colors) {
+            colorsNode.add(color);
+        }
+        return colorsNode;
+    }
 
 }

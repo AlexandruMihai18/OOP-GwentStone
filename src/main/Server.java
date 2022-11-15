@@ -61,7 +61,7 @@ public class Server {
     public void makeArrayResult(ArrayNode output) {
         for (Game game : games) {
             for (int j = 0; j < game.getActions().size(); j++) {
-                if (game.getActions().get(j).getOutput() != null)
+                if (!game.getActions().get(j).getOutput().isEmpty())
                     output.add(game.getActions().get(j).getOutput());
             }
         }

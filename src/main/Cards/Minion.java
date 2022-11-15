@@ -1,11 +1,14 @@
 package main.Cards;
 
 import fileio.CardInput;
+import main.Board;
 
 import java.util.ArrayList;
 
 public class Minion extends Card {
     private boolean frozen;
+    private boolean used;
+
     private boolean taunt = false;
     private int requiredRow;
 
@@ -20,7 +23,9 @@ public class Minion extends Card {
         this.taunt = taunt;
         this.requiredRow = requiredRow;
     }
-
+    public Minion(Card card) {
+        super(card);
+    }
     public boolean isFrozen() {
         return frozen;
     }
@@ -29,6 +34,13 @@ public class Minion extends Card {
         this.frozen = frozen;
     }
 
+    public boolean isUsed() {
+        return used;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
     public boolean isTaunt() {
         return taunt;
     }
@@ -42,28 +54,16 @@ public class Minion extends Card {
     }
 
     @Override
-    public void ability(ArrayList<Minion> row) {}
+    public void ability(Board board, int row) {}
 
-    public void ability(Card card) {}
+    public void ability(ArrayList<Minion> lane, int row) {}
 
     public void showCard() {
         getCardOutput().put("mana", getMana());
         getCardOutput().put("attackDamage", getAttackDamage());
         getCardOutput().put("health", getHealth());
         getCardOutput().put("description", getDescription());
-        getCardOutput().put("colors", getColors().toString());
+        getCardOutput().put("colors", formatColors());
         getCardOutput().put("name", getName());
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "mana=" + getMana() +
-                ", attackDamage=" + getAttackDamage() +
-                ", health=" + getHealth() +
-                ", description='" + getDescription() + '\'' +
-                ", colors=" + getColors() +
-                ", name='" + getName() +
-                '}';
     }
 }

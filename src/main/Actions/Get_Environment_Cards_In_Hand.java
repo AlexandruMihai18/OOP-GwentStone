@@ -32,7 +32,8 @@ public class Get_Environment_Cards_In_Hand extends Action{
         }
         getOutput().put("command", getCommand());
         getOutput().put("playerIdx", getPlayerIdx());
-        getOutput().put("output", environment.toString());
+        showArray(environment);
+        getOutput().put("output", getDeckOutput());
     }
 
     @Override

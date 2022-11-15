@@ -14,11 +14,14 @@ public class Get_Cards_In_Hand extends Action{
         getOutput().put("command", getCommand());
         getOutput().put("playerIdx", getPlayerIdx());
         switch (this.getPlayerIdx()) {
-            case 1:
-                getOutput().put("output", game.getBoard().getPlayerOneHand().toString());
-                break;
-            case 2:
-                getOutput().put("output", game.getBoard().getPlayerTwoHand().toString());
+            case 1 -> {
+                showArray(game.getBoard().getPlayerOneHand());
+                getOutput().put("output", getDeckOutput());
+            }
+            case 2 -> {
+                showArray(game.getBoard().getPlayerTwoHand());
+                getOutput().put("output", getDeckOutput());
+            }
         }
     }
 

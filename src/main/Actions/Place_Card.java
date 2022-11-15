@@ -20,7 +20,7 @@ public class Place_Card extends Action{
     public void setError(String error) {
         getOutput().put("command", getCommand());
         getOutput().put("handIdx", getPlayerIdx());
-        getOutput().put("output", error);
+        getOutput().put("error", error);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Place_Card extends Action{
         }
 
         if (!enoughMana(board, card)) {
-            setError("Not enough mana to place card on table");
+            setError("Not enough mana to place card on table.");
             return;
         }
 

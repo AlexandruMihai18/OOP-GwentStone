@@ -57,6 +57,7 @@ public class End_Player_Turn extends Action{
     void unfrozenRow(ArrayList<Minion> row) {
         for (Minion card : row) {
             card.setFrozen(false);
+            card.setUsed(false);
         }
     }
 }
