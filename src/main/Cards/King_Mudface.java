@@ -1,6 +1,7 @@
 package main.Cards;
 
 import fileio.CardInput;
+import main.Board;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ public class King_Mudface extends Hero{
         super(card);
     }
 
-    public void ability(ArrayList<Minion> row) {
+    public void ability(Board board, int row) {
 
     }
 }

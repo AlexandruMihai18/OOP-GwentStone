@@ -60,7 +60,7 @@ public class Player {
     public Card buildCard(CardInput card) {
         return switch (card.getName()) {
             case SENTINEL -> new Minion(card, 0);
-            case BERSERKER -> new Minion(card, 1);
+            case BERSERKER -> new Minion(card, 0);
             case GOLIATH -> new Minion(card, true, 1);
             case WARDEN -> new Minion(card, true, 1);
             case THE_RIPPER -> new The_Ripper(card, 1);

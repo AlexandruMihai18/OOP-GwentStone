@@ -12,4 +12,9 @@ public class ActionTypeEnum {
     public static final String GET_CARD_AT_POSITION = "getCardAtPosition";
     public static final String GET_ENVIRONMENT_CARDS_IN_HAND = "getEnvironmentCardsInHand";
     public static final String USE_ENVIRONMENT_CARD = "useEnvironmentCard";
+    public static final String GET_FROZEN_CARDS_ON_TABLE = "getFrozenCardsOnTable";
+    public static final String CARD_USES_ATTACK = "cardUsesAttack";
+    public static final String CARD_USES_ABILITY = "cardUsesAbility";
+    public static final String USE_ATTACK_HERO = "useAttackHero";
+    public static final String USE_HERO_ABILITY = "useHeroAbility";
 }

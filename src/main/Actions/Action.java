@@ -1,12 +1,17 @@
 package main.Actions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import fileio.Coordinates;
 import main.Board;
+import main.Cards.Card;
+import main.Cards.Environment;
 import main.Cards.Minion;
 import main.Game;
+
+import java.util.ArrayList;
 
 public abstract class Action {
     private String command;
@@ -17,9 +22,10 @@ public abstract class Action {
     private int playerIdx;
     private int x;
     private int y;
-
     private ObjectMapper mapper = new ObjectMapper();
     private ObjectNode output = mapper.createObjectNode();
+    private ArrayNode deckOutput = mapper.createArrayNode();
+    private ArrayNode tableOutput = mapper.createArrayNode();
 
     public Action(ActionsInput action) {
         this.command = action.getCommand();
@@ -106,18 +112,42 @@ public abstract class Action {
 
     public abstract void action(Board board);
 
-    public void cleanBoard(Board board) {
-        board.getPlayerTwoBackLane().removeIf(minion -> minion.getHealth() <= 0);
-        board.getPlayerTwoFrontLane().removeIf(minion -> minion.getHealth() <= 0);
-        board.getPlayerOneFrontLane().removeIf(minion -> minion.getHealth() <= 0);
-        board.getPlayerOneBackLane().removeIf(minion -> minion.getHealth() <= 0);
+    public ArrayNode getDeckOutput() {
+        return deckOutput;
+    }
+    public void showArray(ArrayList<Card> deck) {
+        for (Card card : deck) {
+            if (card.getType().equals("Environment"))
+                deckOutput.add((new Environment(card)).printCard());
+            else
+                deckOutput.add((new Minion(card)).printCard());
+        }
     }
 
-    public int checkVictory(Board board) {
-        if (board.getPlayerOneHero().getHealth() <= 0)
-            return 2;
-        if (board.getPlayerTwoHero().getHealth() <= 0)
-            return 1;
-        return 0;
+    public ArrayNode getTableOutput() {
+        return tableOutput;
+    }
+
+    public ArrayNode showLane(ArrayList<Minion> lane) {
+        ArrayNode laneNode = mapper.createArrayNode();
+        for (Minion minion : lane) {
+            laneNode.add((new Minion(minion)).printCard());
+        }
+        return laneNode;
+    }
+
+    public void showTable(Board board) {
+        tableOutput.add(showLane(board.getPlayerTwoBackLane()));
+        tableOutput.add(showLane(board.getPlayerTwoFrontLane()));
+        tableOutput.add(showLane(board.getPlayerOneFrontLane()));
+        tableOutput.add(showLane(board.getPlayerOneBackLane()));
+    }
+
+    public ObjectNode formatCoordinates(Coordinates coordinates) {
+        ObjectNode objectCoordinate = mapper.createObjectNode();
+        objectCoordinate.put("x", coordinates.getX());
+        objectCoordinate.put("y", coordinates.getY());
+
+        return objectCoordinate;
     }
 }

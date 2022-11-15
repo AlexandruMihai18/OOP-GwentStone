@@ -21,7 +21,8 @@ public class Use_Environment_Card extends Action{
     public void setError(String error) {
         getOutput().put("command", getCommand());
         getOutput().put("handIdx", getPlayerIdx());
-        getOutput().put("output", error);
+        getOutput().put("affectedRow", getAffectedRow());
+        getOutput().put("error", error);
     }
 
     @Override
@@ -70,18 +71,9 @@ public class Use_Environment_Card extends Action{
             board.setPlayerTwoMana(-card.getMana());
         }
 
-        if (card.getName().equals("Heart Hound"))
-            ((Heart_Hound)card).ability(board, getAffectedRow());
-        else {
-            switch(getAffectedRow()) {
-                case 0: card.ability(board.getPlayerTwoBackLane());
-                case 1: card.ability(board.getPlayerTwoFrontLane());
-                case 2: card.ability(board.getPlayerOneFrontLane());
-                case 3: card.ability(board.getPlayerOneBackLane());
-            }
-        }
+        card.ability(board, getAffectedRow());
 
-
+        board.clearBoard();
     }
 
     public boolean enoughMana(Board board, Card card) {
@@ -97,15 +89,19 @@ public class Use_Environment_Card extends Action{
             case 0:
                 if (board.getPlayerOneBackLane().size() == 5)
                     return false;
+                break;
             case 1:
                 if (board.getPlayerOneFrontLane().size() == 5)
                     return false;
+                break;
             case 2:
                 if (board.getPlayerTwoFrontLane().size() == 5)
                     return false;
+                break;
             case 3:
                 if (board.getPlayerTwoBackLane().size() == 5)
                     return false;
+                break;
         }
         return true;
     }

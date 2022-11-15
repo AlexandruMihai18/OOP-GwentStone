@@ -15,13 +15,9 @@ public class Get_Cards_On_Table extends Action{
 
     @Override
     public void setOutput(Game game) {
-        ArrayList<ArrayList<Minion>> table = new ArrayList<>();
-        table.add(game.getBoard().getPlayerTwoBackLane());
-        table.add(game.getBoard().getPlayerTwoFrontLane());
-        table.add(game.getBoard().getPlayerOneFrontLane());
-        table.add(game.getBoard().getPlayerOneBackLane());
         getOutput().put("command", getCommand());
-        getOutput().put("output", table.toString());
+        showTable(game.getBoard());
+        getOutput().put("output", getTableOutput());
     }
 
     @Override

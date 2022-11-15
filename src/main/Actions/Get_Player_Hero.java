@@ -15,8 +15,12 @@ public class Get_Player_Hero extends Action{
         getOutput().put("command", getCommand());
         getOutput().put("playerIdx", getPlayerIdx());
         switch (getPlayerIdx()) {
-            case 1 -> getOutput().put("output", game.getGameStart().getPlayerOneHero().toString());
-            case 2 -> getOutput().put("output", game.getGameStart().getPlayerTwoHero().toString());
+            case 1 -> {
+                getOutput().put("output", game.getBoard().getPlayerOneHero().printCard());
+            }
+            case 2 -> {
+                getOutput().put("output", game.getBoard().getPlayerTwoHero().printCard());
+            }
             default -> throw new IllegalStateException("Unexpected value: " + getPlayerIdx());
         }
     }

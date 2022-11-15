@@ -1,8 +1,10 @@
 package main.Actions;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import main.Board;
 import main.Cards.Card;
+import main.Cards.Minion;
 import main.Game;
 
 public class Get_Card_At_Position extends Action{
@@ -25,13 +27,13 @@ public class Get_Card_At_Position extends Action{
         };
 
         getOutput().put("command", getCommand());
-        getOutput().put("output", card.toString());
+        getOutput().put("output", (new Minion(card)).printCard());
     }
 
     @Override
     public void setError(String error) {
         getOutput().put("command", getCommand());
-        getOutput().put("output", error);
+        getOutput().put("error", error);
     }
 
     @Override
@@ -42,20 +44,24 @@ public class Get_Card_At_Position extends Action{
     public boolean isCard(Board board, int x, int y) {
         switch(x) {
             case 0:
-                if (board.getPlayerTwoBackLane().size() <= y)
+                if (board.getPlayerTwoBackLane().size() <= y) {
                     return false;
+                }
                 break;
             case 1:
-                if (board.getPlayerTwoFrontLane().size() <= y)
+                if (board.getPlayerTwoFrontLane().size() <= y) {
                     return false;
+                }
                 break;
             case 2:
-                if (board.getPlayerOneFrontLane().size() <= y)
+                if (board.getPlayerOneFrontLane().size() <= y) {
                     return false;
+                }
                 break;
             case 3:
-                if (board.getPlayerOneBackLane().size() <= y)
+                if (board.getPlayerOneBackLane().size() <= y) {
                     return false;
+                }
                 break;
         }
         return true;

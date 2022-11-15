@@ -13,7 +13,7 @@ public class Get_Player_Turn extends Action{
 
     public void setOutput(Game game) {
          getOutput().put("command", getCommand());
-         getOutput().put("playerTurn", game.getBoard().getTurn());
+         getOutput().put("output", game.getBoard().getTurn());
     }
 
     @Override

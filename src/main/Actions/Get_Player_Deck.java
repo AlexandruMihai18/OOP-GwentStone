@@ -18,10 +18,12 @@ public class Get_Player_Deck extends Action{
         getOutput().put("playerIdx", getPlayerIdx());
         switch (this.getPlayerIdx()) {
             case 1:
-                getOutput().put("output", game.getBoard().getPlayerOneDeck().toString());
+                showArray(game.getBoard().getPlayerOneDeck());
+                getOutput().put("output", getDeckOutput());
                 break;
             case 2:
-                getOutput().put("output", game.getBoard().getPlayerTwoDeck().toString());
+                showArray(game.getBoard().getPlayerTwoDeck());
+                getOutput().put("output", getDeckOutput());
         }
     }
 

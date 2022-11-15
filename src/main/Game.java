@@ -68,6 +68,11 @@ public class Game {
             case GET_CARD_AT_POSITION -> new Get_Card_At_Position(action);
             case GET_ENVIRONMENT_CARDS_IN_HAND -> new Get_Environment_Cards_In_Hand(action);
             case USE_ENVIRONMENT_CARD -> new Use_Environment_Card(action);
+            case GET_FROZEN_CARDS_ON_TABLE -> new Get_Frozen_Cards_On_Table(action);
+            case CARD_USES_ATTACK -> new Card_Uses_Attack(action);
+            case CARD_USES_ABILITY -> new Card_Uses_Ability(action);
+            case USE_ATTACK_HERO -> new Use_Attack_Hero(action);
+            case USE_HERO_ABILITY -> new Use_Hero_Ability(action);
             default -> null;
         };
     }
@@ -94,7 +99,6 @@ public class Game {
 
     public void setPlayerOneHero() {
         playerOneHero = new Hero(gameStart.getPlayerOneHero());
-        playerOneHero.setHealth(30);
     }
 
     public Hero getPlayerTwoHero() {
@@ -102,16 +106,15 @@ public class Game {
     }
 
     public void setPlayerTwoHero() {
-        playerTwoHero = new Hero(gameStart.getPlayerOneHero());
-        playerTwoHero.setHealth(30);
+        playerTwoHero = new Hero(gameStart.getPlayerTwoHero());
     }
 
 
     public void play () {
         board.setPlayerOneDeck(playerOneDeck, gameStart.getShuffleSeed());
         board.setPlayerTwoDeck(playerTwoDeck, gameStart.getShuffleSeed());
-        board.setPlayerOneHero(new Hero(playerOneHero));
-        board.setPlayerTwoHero(new Hero(playerTwoHero));
+        board.setPlayerOneHero(playerOneHero);
+        board.setPlayerTwoHero(playerTwoHero);
         board.setTurn(gameStart.getStartingPlayer());
         board.setPlayerOneMana(board.getManaGiven());
         board.setPlayerOneHand();
@@ -121,7 +124,8 @@ public class Game {
         for (Action action : actions) {
             action.action(board);
             action.setOutput(this);
-            action.cleanBoard(board);
+            if (board.getVictory() != 0)
+                break;
         }
     }
 }
