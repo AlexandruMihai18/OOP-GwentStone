@@ -1,14 +1,14 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
+import main.Server.Board;
 import main.Cards.Minion;
-import main.ErrorHandler;
-import main.FormatOutput;
+import main.Helpers.ErrorHandler;
+import main.Helpers.FormatOutput;
 
-import static main.ErrorHandler.IS_FROZEN;
-import static main.ErrorHandler.IS_USED;
-import static main.ErrorHandler.NOT_TANK;
+import static main.Helpers.ErrorHandler.IS_FROZEN;
+import static main.Helpers.ErrorHandler.IS_USED;
+import static main.Helpers.ErrorHandler.NOT_TANK;
 
 
 public final class CardUsesAttack extends Action {

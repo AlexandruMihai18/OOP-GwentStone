@@ -1,8 +1,8 @@
-package main;
+package main.Helpers;
 
 import fileio.CardInput;
 import main.Cards.*;
-import static main.CardTypeEnum.*;
+import static main.Helpers.CardTypeEnum.*;
 
 import java.util.ArrayList;
 

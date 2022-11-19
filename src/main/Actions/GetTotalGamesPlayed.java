@@ -1,8 +1,8 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
-import main.Server;
+import main.Server.Board;
+import main.Server.Server;
 
 public final class GetTotalGamesPlayed extends Action {
     public GetTotalGamesPlayed(final ActionsInput action) {

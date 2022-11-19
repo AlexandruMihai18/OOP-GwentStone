@@ -1,4 +1,4 @@
-package main;
+package main.Helpers;
 
 public final class MagicNumbers {
     public static final int MAX_MANA_GIVEN = 10;

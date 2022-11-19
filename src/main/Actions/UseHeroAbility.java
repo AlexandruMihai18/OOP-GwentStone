@@ -1,14 +1,14 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
+import main.Server.Board;
 import main.Cards.Hero;
-import main.ErrorHandler;
+import main.Helpers.ErrorHandler;
 
-import static main.ErrorHandler.HERO_IS_USED;
-import static main.ErrorHandler.HERO_NOT_ALLY_ROW;
-import static main.ErrorHandler.HERO_NOT_ENEMY_ROW;
-import static main.ErrorHandler.HERO_NOT_ENOUGH_MANA;
+import static main.Helpers.ErrorHandler.HERO_IS_USED;
+import static main.Helpers.ErrorHandler.HERO_NOT_ALLY_ROW;
+import static main.Helpers.ErrorHandler.HERO_NOT_ENEMY_ROW;
+import static main.Helpers.ErrorHandler.HERO_NOT_ENOUGH_MANA;
 
 public final class UseHeroAbility extends Action {
     public UseHeroAbility(final ActionsInput action) {

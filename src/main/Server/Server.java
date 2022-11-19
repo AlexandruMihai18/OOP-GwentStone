@@ -1,4 +1,4 @@
-package main;
+package main.Server;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.Input;

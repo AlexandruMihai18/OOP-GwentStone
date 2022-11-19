@@ -2,7 +2,7 @@ package main.Cards;
 
 import fileio.CardInput;
 
-import static main.MagicNumbers.RIPPER;
+import static main.Helpers.MagicNumbers.RIPPER;
 
 public final class TheRipper extends Minion {
     public TheRipper(final CardInput card, final int requiredRow) {

@@ -1,14 +1,15 @@
-package main;
+package main.Helpers;
 
 import fileio.Coordinates;
+import main.Server.Board;
 import main.Cards.Card;
 import main.Cards.Hero;
 import main.Cards.Minion;
 
 import java.util.ArrayList;
 
-import static main.CardTypeEnum.*;
-import static main.MagicNumbers.*;
+import static main.Helpers.CardTypeEnum.*;
+import static main.Helpers.MagicNumbers.*;
 
 public final class ErrorHandler {
     public static final String NO_CARD = "No card at that position.";

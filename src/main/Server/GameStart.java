@@ -1,8 +1,8 @@
-package main;
+package main.Server;
 
 import fileio.StartGameInput;
 import main.Cards.Hero;
-import static main.CardTypeEnum.*;
+import main.Helpers.DeckBuilder;
 
 public final class GameStart {
     private int playerOneDeckIdx;

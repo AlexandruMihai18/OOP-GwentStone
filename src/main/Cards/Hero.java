@@ -4,7 +4,7 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
-import static main.MagicNumbers.HERO_HEALTH;
+import static main.Helpers.MagicNumbers.HERO_HEALTH;
 
 public class Hero extends Card {
     private boolean used;

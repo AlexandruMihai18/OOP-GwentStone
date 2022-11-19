@@ -1,4 +1,4 @@
-package main;
+package main.Server;
 
 import main.Cards.Card;
 import main.Cards.Hero;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import static main.MagicNumbers.*;
+import static main.Helpers.MagicNumbers.*;
 
 
 public final class Board {

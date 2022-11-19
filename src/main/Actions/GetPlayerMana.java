@@ -1,7 +1,7 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
+import main.Server.Board;
 
 public final class GetPlayerMana extends Action {
     public GetPlayerMana(final ActionsInput action) {
