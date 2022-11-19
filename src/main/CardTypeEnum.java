@@ -1,6 +1,6 @@
 package main;
 
-public class CardTypeEnum {
+public final class CardTypeEnum {
     public static final String SENTINEL = "Sentinel";
     public static final String BERSERKER = "Berserker";
     public static final String GOLIATH = "Goliath";
@@ -16,4 +16,7 @@ public class CardTypeEnum {
     public static final String EMPRESS_THORINA = "Empress Thorina";
     public static final String KING_MUDFACE = "King Mudface";
     public static final String GENERAL_KOCIORAW = "General Kocioraw";
+    private CardTypeEnum() {
+
+    }
 }

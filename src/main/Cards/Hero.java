@@ -1,28 +1,34 @@
 package main.Cards;
 
 import fileio.CardInput;
-import main.Board;
 
 import java.util.ArrayList;
 
+import static main.MagicNumbers.HERO_HEALTH;
+
 public class Hero extends Card {
-    public Hero(CardInput card) {
+    private boolean used;
+    public Hero(final CardInput card) {
         super(card);
-        setHealth(30);
+        setHealth(HERO_HEALTH);
         setType("Hero");
     }
 
-    public Hero(Card card) {
+    public Hero(final Card card) {
         super(card);
+        setType("Hero");
     }
 
-    public void ability(Board board, int row) {}
+    public final boolean isUsed() {
+        return used;
+    }
 
-    public void showCard() {
-        getCardOutput().put("mana", getMana());
-        getCardOutput().put("description", getDescription());
-        getCardOutput().put("colors", formatColors());
-        getCardOutput().put("name", getName());
-        getCardOutput().put("health", getHealth());
+    public final void setUsed(final boolean used) {
+        this.used = used;
+    }
+
+    @Override
+    public void ability(final ArrayList<Minion> lane) {
+
     }
 }

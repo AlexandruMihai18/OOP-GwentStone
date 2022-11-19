@@ -1,28 +1,22 @@
 package main.Cards;
 
 import fileio.CardInput;
-import main.Board;
 
 import java.util.ArrayList;
 
-public class Environment extends Card{
-    public Environment(CardInput card) {
+public class Environment extends Card {
+    public Environment(final CardInput card) {
         super(card);
         setType("Environment");
     }
 
-    public Environment(Card card) {
+    public Environment(final Card card) {
         super(card);
-    }
-
-    public void showCard() {
-        getCardOutput().put("mana", getMana());
-        getCardOutput().put("description", getDescription());
-        getCardOutput().put("colors", formatColors());
-        getCardOutput().put("name", getName());
+        setType("Environment");
     }
 
     @Override
-    public void ability(Board board, int row) {
+    public void ability(final ArrayList<Minion> lane) {
+
     }
 }

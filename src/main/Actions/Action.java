@@ -1,17 +1,10 @@
 package main.Actions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import fileio.Coordinates;
 import main.Board;
-import main.Cards.Card;
-import main.Cards.Environment;
-import main.Cards.Minion;
-import main.Game;
-
-import java.util.ArrayList;
 
 public abstract class Action {
     private String command;
@@ -24,10 +17,12 @@ public abstract class Action {
     private int y;
     private ObjectMapper mapper = new ObjectMapper();
     private ObjectNode output = mapper.createObjectNode();
-    private ArrayNode deckOutput = mapper.createArrayNode();
-    private ArrayNode tableOutput = mapper.createArrayNode();
 
-    public Action(ActionsInput action) {
+    public Action() {
+
+    }
+
+    public Action(final ActionsInput action) {
         this.command = action.getCommand();
         this.handIdx = action.getHandIdx();
         this.cardAttacker = action.getCardAttacker();
@@ -38,116 +33,89 @@ public abstract class Action {
         this.y = action.getY();
     }
 
-    public String getCommand() {
+    public final String getCommand() {
         return command;
     }
 
-    public void setCommand(String command) {
+    public final void setCommand(final String command) {
         this.command = command;
     }
 
-    public int getHandIdx() {
+    public final int getHandIdx() {
         return handIdx;
     }
 
-    public void setHandIdx(int handIdx) {
+    public final void setHandIdx(final int handIdx) {
         this.handIdx = handIdx;
     }
 
-    public Coordinates getCardAttacker() {
+    public final Coordinates getCardAttacker() {
         return cardAttacker;
     }
 
-    public void setCardAttacker(Coordinates cardAttacker) {
+    public final void setCardAttacker(final Coordinates cardAttacker) {
         this.cardAttacker = cardAttacker;
     }
 
-    public Coordinates getCardAttacked() {
+    public final Coordinates getCardAttacked() {
         return cardAttacked;
     }
 
-    public void setCardAttacked(Coordinates cardAttacked) {
+    public final void setCardAttacked(final Coordinates cardAttacked) {
         this.cardAttacked = cardAttacked;
     }
 
-    public int getAffectedRow() {
+    public final int getAffectedRow() {
         return affectedRow;
     }
 
-    public void setAffectedRow(int affectedRow) {
+    public final void setAffectedRow(final int affectedRow) {
         this.affectedRow = affectedRow;
     }
 
-    public int getPlayerIdx() {
+    public final int getPlayerIdx() {
         return playerIdx;
     }
 
-    public void setPlayerIdx(int playerIdx) {
+    public final void setPlayerIdx(final int playerIdx) {
         this.playerIdx = playerIdx;
     }
 
-    public int getX() {
+    public final int getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public final void setX(final int x) {
         this.x = x;
     }
 
-    public int getY() {
+    public final int getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public final void setY(final int y) {
         this.y = y;
     }
 
-    public ObjectNode getOutput() {
+    public final ObjectNode getOutput() {
         return output;
     }
 
-    public abstract void setOutput(Game game);
+    /**
+     * Returning JSON formatted output depending on the type of action
+     * @param board given board from which there will be extracted info
+     */
+    public abstract void setOutput(Board board);
 
+    /**
+     * Returning a JSON formatted error depending on the type of action
+     * @param error error message
+     */
     public abstract void setError(String error);
 
+    /**
+     * Implemented action depending of the command given
+     * @param board given board which will be modified accordingly
+     */
     public abstract void action(Board board);
-
-    public ArrayNode getDeckOutput() {
-        return deckOutput;
-    }
-    public void showArray(ArrayList<Card> deck) {
-        for (Card card : deck) {
-            if (card.getType().equals("Environment"))
-                deckOutput.add((new Environment(card)).printCard());
-            else
-                deckOutput.add((new Minion(card)).printCard());
-        }
-    }
-
-    public ArrayNode getTableOutput() {
-        return tableOutput;
-    }
-
-    public ArrayNode showLane(ArrayList<Minion> lane) {
-        ArrayNode laneNode = mapper.createArrayNode();
-        for (Minion minion : lane) {
-            laneNode.add((new Minion(minion)).printCard());
-        }
-        return laneNode;
-    }
-
-    public void showTable(Board board) {
-        tableOutput.add(showLane(board.getPlayerTwoBackLane()));
-        tableOutput.add(showLane(board.getPlayerTwoFrontLane()));
-        tableOutput.add(showLane(board.getPlayerOneFrontLane()));
-        tableOutput.add(showLane(board.getPlayerOneBackLane()));
-    }
-
-    public ObjectNode formatCoordinates(Coordinates coordinates) {
-        ObjectNode objectCoordinate = mapper.createObjectNode();
-        objectCoordinate.put("x", coordinates.getX());
-        objectCoordinate.put("y", coordinates.getY());
-
-        return objectCoordinate;
-    }
 }
