@@ -69,11 +69,10 @@ public final class Main {
 
         ArrayNode output = objectMapper.createArrayNode();
 
-        //TODO add here the entry point to your implementation
         Server.getServer().resetServer();
         Server.getServer().uploadData(inputData);
         Server.getServer().startServer();
-        Server.getServer().makeArrayResult(output);
+        Server.getServer().importOutput(output);
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);

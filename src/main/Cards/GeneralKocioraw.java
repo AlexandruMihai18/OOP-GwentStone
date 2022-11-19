@@ -4,22 +4,19 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
-public final class Firestorm extends Environment {
-    public Firestorm(final CardInput card) {
-        super(card);
-    }
-    public Firestorm(final Card card) {
+public final class GeneralKocioraw extends Hero {
+    public GeneralKocioraw(final CardInput card) {
         super(card);
     }
 
     /**
-     * Firestorm card decreases the health of all cards on a row by 1
+     * General Kocioraw's ability increases the attack damage of all cards on an ally row by 1
      * @param lane affected lane
      */
     @Override
     public void ability(final ArrayList<Minion> lane) {
         for (Minion minion : lane) {
-            minion.setHealth(-1);
+            minion.setAttackDamage(1);
         }
     }
 }

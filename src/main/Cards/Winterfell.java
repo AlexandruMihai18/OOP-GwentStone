@@ -1,32 +1,23 @@
 package main.Cards;
 
 import fileio.CardInput;
-import main.Board;
 
 import java.util.ArrayList;
 
-public class Winterfell extends Environment{
-    public Winterfell(CardInput card) {
+public final class Winterfell extends Environment {
+    public Winterfell(final CardInput card) {
+        super(card);
+    }
+    public Winterfell(final Card card) {
         super(card);
     }
 
-    public void ability(Board board, int row) {
-        ArrayList<Minion> affectedRow;
-        switch(row) {
-            case 0:
-                affectedRow = board.getPlayerTwoBackLane();
-                break;
-            case 1:
-                affectedRow = board.getPlayerTwoFrontLane();
-                break;
-            case 2:
-                affectedRow = board.getPlayerOneFrontLane();
-                break;
-            default:
-                affectedRow = board.getPlayerOneBackLane();
-                break;
-        }
-        for (Minion card : affectedRow) {
+    /**
+     * Winterfell's ability freezes all cards on a row
+     * @param lane affected lane
+     */
+    public void ability(final ArrayList<Minion> lane) {
+        for (Minion card : lane) {
             card.setFrozen(true);
         }
     }

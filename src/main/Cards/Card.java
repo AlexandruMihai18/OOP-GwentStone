@@ -1,10 +1,6 @@
 package main.Cards;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.CardInput;
-import main.Board;
 
 import java.util.ArrayList;
 
@@ -16,10 +12,8 @@ public abstract class Card {
     private final String description;
     private final ArrayList<String> colors;
     private String name;
-    private ObjectMapper mapper = new ObjectMapper();
-    private ObjectNode cardOutput = mapper.createObjectNode();
 
-    public Card(CardInput card) {
+    public Card(final CardInput card) {
         this.mana = card.getMana();
         this.health = card.getHealth();
         this.attackDamage = card.getAttackDamage();
@@ -28,7 +22,7 @@ public abstract class Card {
         this.name = card.getName();
     }
 
-    public Card(Card card) {
+    public Card(final Card card) {
         this.type = card.getType();
         this.mana = card.getMana();
         this.health = card.getHealth();
@@ -38,73 +32,69 @@ public abstract class Card {
         this.name = card.getName();
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
-    public int getMana() {
+    public final int getMana() {
         return mana;
     }
 
-    public void setMana(int mana) {
+    /**
+     * Incrementing the mana cost of a card
+     * @param mana additional mana required for a card
+     */
+    public final void setMana(final int mana) {
         this.mana += mana;
     }
 
-    public int getAttackDamage() {
+    public final int getAttackDamage() {
         return attackDamage;
     }
 
-    public void setAttackDamage(int attackDamage) {
+    /**
+     * Incrementing the attack damage of a card
+     * @param attackDamage additional attack damage implemented for a card
+     */
+    public final void setAttackDamage(final int attackDamage) {
         this.attackDamage += attackDamage;
     }
 
-    public int getHealth() {
+    public final int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    /**
+     * Incrementing the health of a card
+     * @param health additional health added for a card
+     */
+    public final void setHealth(final int health) {
         this.health += health;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public ArrayList<String> getColors() {
+    public final ArrayList<String> getColors() {
         return colors;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public ObjectNode getCardOutput() {
-        return cardOutput;
-    }
-
-    public abstract void ability(Board board, int row);
-
-    public ObjectNode printCard() {
-        showCard();
-        return cardOutput;
-    }
-
-    public abstract void showCard();
-
-    public ArrayNode formatColors() {
-        ArrayNode colorsNode = mapper.createArrayNode();
-        for (String color : colors) {
-            colorsNode.add(color);
-        }
-        return colorsNode;
-    }
-
+    /**
+     * Card ability coresponding to each card type (Minion, Environment, Hero)
+     * @param lane affected lane
+     */
+    public abstract void ability(ArrayList<Minion> lane);
 }

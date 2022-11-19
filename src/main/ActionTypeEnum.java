@@ -1,6 +1,9 @@
 package main;
 
-public class ActionTypeEnum {
+public final class ActionTypeEnum {
+    private ActionTypeEnum() {
+
+    }
     public static final String GET_PLAYER_DECK = "getPlayerDeck";
     public static final String GET_PLAYER_HERO = "getPlayerHero";
     public static final String GET_PLAYER_TURN = "getPlayerTurn";
@@ -17,4 +20,7 @@ public class ActionTypeEnum {
     public static final String CARD_USES_ABILITY = "cardUsesAbility";
     public static final String USE_ATTACK_HERO = "useAttackHero";
     public static final String USE_HERO_ABILITY = "useHeroAbility";
+    public static final String GET_TOTAL_GAMES_PLAYED = "getTotalGamesPlayed";
+    public static final String GET_PLAYER_ONE_WINS = "getPlayerOneWins";
+    public static final String GET_PLAYER_TWO_WINS = "getPlayerTwoWins";
 }

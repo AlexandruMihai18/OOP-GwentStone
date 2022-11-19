@@ -1,69 +1,79 @@
 package main.Cards;
 
 import fileio.CardInput;
-import main.Board;
 
 import java.util.ArrayList;
 
 public class Minion extends Card {
     private boolean frozen;
     private boolean used;
-
-    private boolean taunt = false;
+    private boolean tank = false;
     private int requiredRow;
 
-    public Minion(CardInput card, int requiredRow) {
+    public Minion(final CardInput card, final int requiredRow) {
         super(card);
         setType("Minion");
         this.requiredRow = requiredRow;
     }
-    public Minion(CardInput card, boolean taunt, int requiredRow) {
+    public Minion(final CardInput card, final boolean tank, final int requiredRow) {
         super(card);
         setType("Minion");
-        this.taunt = taunt;
+        this.tank = tank;
         this.requiredRow = requiredRow;
     }
-    public Minion(Card card) {
+    public Minion(final Card card) {
         super(card);
+        setType("Minion");
     }
-    public boolean isFrozen() {
+    public Minion(final Card card, final int requiredRow) {
+        super(card);
+        setType("Minion");
+        this.requiredRow = requiredRow;
+    }
+    public Minion(final Card card, final boolean tank, final int requiredRow) {
+        super(card);
+        setType("Minion");
+        this.tank = tank;
+        this.requiredRow = requiredRow;
+    }
+    public final boolean isFrozen() {
         return frozen;
     }
 
-    public void setFrozen(boolean frozen) {
+    public final void setFrozen(final boolean frozen) {
         this.frozen = frozen;
     }
 
-    public boolean isUsed() {
+    public final boolean isUsed() {
         return used;
     }
 
-    public void setUsed(boolean used) {
+    public final void setUsed(final boolean used) {
         this.used = used;
     }
-    public boolean isTaunt() {
-        return taunt;
+
+    public final boolean isTank() {
+        return tank;
     }
 
-    public void setTaunt(boolean taunt) {
-        this.taunt = taunt;
+    public final void setTank(final boolean tank) {
+        this.tank = tank;
     }
 
-    public int getRequiredRow() {
+    public final int getRequiredRow() {
         return requiredRow;
     }
 
     @Override
-    public void ability(Board board, int row) {}
+    public void ability(final ArrayList<Minion> lane) {
 
-    public void ability(ArrayList<Minion> lane, int row) {}
+    }
 
-    public void showCard() {
-        getCardOutput().put("mana", getMana());
-        getCardOutput().put("attackDamage", getAttackDamage());
-        getCardOutput().put("health", getHealth());
-        getCardOutput().put("description", getDescription());
-        getCardOutput().put("colors", formatColors());
-        getCardOutput().put("name", getName());
+    /**
+     * Special minions affect only a single card instead of an entire row
+     * @param minion affect card
+     */
+    public void ability(final Minion minion) {
+
     }
 }

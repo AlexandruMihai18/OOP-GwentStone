@@ -2,17 +2,22 @@ package main.Cards;
 
 import fileio.CardInput;
 
-import java.util.ArrayList;
-
-public class Miraj extends Minion{
-    public Miraj(CardInput card, int requiredRow) {
+public final class Miraj extends Minion {
+    public Miraj(final CardInput card, final int requiredRow) {
+        super(card, requiredRow);
+    }
+    public Miraj(final Card card, final int requiredRow) {
         super(card, requiredRow);
     }
 
-    public void ability(ArrayList<Minion> lane, int row) {
+    /**
+     * Miraj's ability swaps it's health with the enemy health
+     * @param minion affect card
+     */
+    public void ability(final Minion minion) {
         int tmpMyHealth = this.getHealth();
-        int tmpEnemyHealth = lane.get(row).getHealth();
+        int tmpEnemyHealth = minion.getHealth();
         this.setHealth(-tmpMyHealth + tmpEnemyHealth);
-        lane.get(row).setHealth(-tmpEnemyHealth+ tmpMyHealth);
+        minion.setHealth(-tmpEnemyHealth + tmpMyHealth);
     }
 }
