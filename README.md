@@ -13,7 +13,7 @@ fight against an enemy.
 
 # Card Implementation
 
-Cards were divided into 3 categories depending on their effects:
+cards were divided into 3 categories depending on their effects:
 * **Minion** - cards that are placed on board that could either attack or use special ability
 * **Environment card** - spells that affect the minions placed on board
 * **Hero** - The *commander* of the minions that can use a special ability
@@ -40,7 +40,7 @@ cannot place a card due to lack of mana, an incorrect attack action etc.).
 
 -------------------------------------------------------
 
-# Server Implementation
+# server Implementation
 
 The server class represents the entry point of the implementation that keeps track
 of the statistics and ensure the flow of games and adding the output to the given output point.
@@ -58,9 +58,9 @@ and after each player turn all his cards are unfrozen and mark as reusable next 
 
 -------------------------------------------------------
 
-# Helpers Implementation
+# helpers Implementation
 
-The Helpers package include utility classes that include static fields and methods used to:
+The helpers package include utility classes that include static fields and methods used to:
 * transform input (ActionBuilder, DeckBuilder) or format output (FormatOutput)
 * handle errors and keeping error messages
 * define card and action names
