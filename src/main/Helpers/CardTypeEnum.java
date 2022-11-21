@@ -1,4 +1,4 @@
-package main;
+package main.Helpers;
 
 public final class CardTypeEnum {
     public static final String SENTINEL = "Sentinel";

@@ -1,6 +1,6 @@
 package main.Actions;
 
-import main.Board;
+import main.Server.Board;
 
 public final class GameEnded extends Action {
     public GameEnded() {

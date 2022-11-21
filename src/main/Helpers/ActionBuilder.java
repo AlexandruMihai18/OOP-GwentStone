@@ -1,9 +1,9 @@
-package main;
+package main.Helpers;
 
 import fileio.ActionsInput;
 import main.Actions.*;
 
-import static main.ActionTypeEnum.*;
+import static main.Helpers.ActionTypeEnum.*;
 
 public final class ActionBuilder {
     private ActionBuilder() {

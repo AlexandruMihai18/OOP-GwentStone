@@ -1,4 +1,4 @@
-package main;
+package main.Helpers;
 
 public final class ActionTypeEnum {
     private ActionTypeEnum() {

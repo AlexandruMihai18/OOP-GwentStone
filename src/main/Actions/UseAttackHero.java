@@ -1,15 +1,13 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
 import main.Cards.Hero;
 import main.Cards.Minion;
-import main.ErrorHandler;
-import main.FormatOutput;
+import main.Helpers.ErrorHandler;
+import main.Helpers.FormatOutput;
+import main.Server.Board;
 
-import static main.ErrorHandler.IS_FROZEN;
-import static main.ErrorHandler.IS_USED;
-import static main.ErrorHandler.NOT_TANK;
+import static main.Helpers.ErrorHandler.*;
 
 public final class UseAttackHero extends Action {
     public UseAttackHero(final ActionsInput action) {

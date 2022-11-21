@@ -1,8 +1,8 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
-import main.FormatOutput;
+import main.Helpers.FormatOutput;
+import main.Server.Board;
 
 public final class GetPlayerDeck extends Action {
     public GetPlayerDeck(final ActionsInput action) {

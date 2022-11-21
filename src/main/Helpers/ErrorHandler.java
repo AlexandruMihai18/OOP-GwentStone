@@ -1,14 +1,15 @@
-package main;
+package main.Helpers;
 
 import fileio.Coordinates;
 import main.Cards.Card;
 import main.Cards.Hero;
 import main.Cards.Minion;
+import main.Server.Board;
 
 import java.util.ArrayList;
 
-import static main.CardTypeEnum.*;
-import static main.MagicNumbers.*;
+import static main.Helpers.CardTypeEnum.*;
+import static main.Helpers.MagicNumbers.*;
 
 public final class ErrorHandler {
     public static final String NO_CARD = "No card at that position.";
@@ -77,12 +78,15 @@ public final class ErrorHandler {
      */
     public static boolean isEnemyCard(final Board board, final Coordinates coordinates) {
         switch (board.getTurn()) {
-            case 1:
+            case 1 -> {
                 return (coordinates.getX() < MIDDLE_LANE);
-            case 2:
+            }
+            case 2 -> {
                 return (coordinates.getX() >= MIDDLE_LANE);
-            default:
+            }
+            default -> {
                 return true;
+            }
         }
     }
 
@@ -102,22 +106,23 @@ public final class ErrorHandler {
      */
     public static boolean isThereTank(final Board board) {
         switch (board.getTurn()) {
-            case 1:
+            case 1 -> {
                 for (Minion minion : board.getLanes().get(PLAYER_TWO_FRONT_LANE)) {
                     if (minion.isTank()) {
                         return true;
                     }
                 }
-                break;
-            case 2:
+            }
+            case 2 -> {
                 for (Minion minion : board.getLanes().get(PLAYER_ONE_FRONT_LANE)) {
                     if (minion.isTank()) {
                         return true;
                     }
                 }
-                break;
-            default:
+            }
+            default -> {
                 return false;
+            }
         }
         return false;
     }
@@ -130,9 +135,15 @@ public final class ErrorHandler {
      */
     public static boolean enoughMana(final Board board, final Card card) {
         switch (board.getTurn()) {
-            case 1: return card.getMana() <= board.getPlayerOneMana();
-            case 2: return card.getMana() <= board.getPlayerTwoMana();
-            default: return true;
+            case 1 -> {
+                return card.getMana() <= board.getPlayerOneMana();
+            }
+            case 2 -> {
+                return card.getMana() <= board.getPlayerTwoMana();
+            }
+            default -> {
+                return true;
+            }
         }
     }
 

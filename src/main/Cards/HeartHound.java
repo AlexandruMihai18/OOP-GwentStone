@@ -1,11 +1,11 @@
 package main.Cards;
 
 import fileio.CardInput;
-import main.Board;
+import main.Server.Board;
 
 import java.util.ArrayList;
 
-import static main.MagicNumbers.NUMBER_LANES;
+import static main.Helpers.MagicNumbers.NUMBER_LANES;
 
 public final class HeartHound extends Environment {
     public HeartHound(final CardInput card) {

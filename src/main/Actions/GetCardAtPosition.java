@@ -1,12 +1,12 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
 import main.Cards.Minion;
-import main.ErrorHandler;
-import main.FormatOutput;
+import main.Helpers.ErrorHandler;
+import main.Helpers.FormatOutput;
+import main.Server.Board;
 
-import static main.ErrorHandler.NO_CARD;
+import static main.Helpers.ErrorHandler.NO_CARD;
 
 public class GetCardAtPosition extends Action {
     public GetCardAtPosition(final ActionsInput action) {

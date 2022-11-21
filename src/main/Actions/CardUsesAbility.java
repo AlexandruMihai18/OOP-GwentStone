@@ -1,16 +1,12 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
 import main.Cards.Minion;
-import main.ErrorHandler;
-import main.FormatOutput;
+import main.Helpers.ErrorHandler;
+import main.Helpers.FormatOutput;
+import main.Server.Board;
 
-import static main.ErrorHandler.IS_FROZEN;
-import static main.ErrorHandler.IS_USED;
-import static main.ErrorHandler.NOT_ALLY;
-import static main.ErrorHandler.NOT_ENEMY;
-import static main.ErrorHandler.NOT_TANK;
+import static main.Helpers.ErrorHandler.*;
 
 public final class CardUsesAbility extends Action {
     public CardUsesAbility(final ActionsInput action) {

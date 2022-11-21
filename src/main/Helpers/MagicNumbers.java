@@ -1,4 +1,4 @@
-package main;
+package main.Helpers;
 
 public final class MagicNumbers {
     public static final int MAX_MANA_GIVEN = 10;
@@ -12,6 +12,10 @@ public final class MagicNumbers {
     public static final int HERO_HEALTH = 30;
     public static final int RIPPER = -2;
     public static final int MAX_MINIONS = 5;
+    public static final int DISCIPLE_HEALTH = 2;
+    public static final int FIRESTORM_HEALTH = -1;
+    public static final int KOCIORAW_ATTACK = 1;
+    public static final int MUDFACE_HEALTH = 1;
 
     private MagicNumbers() {
 

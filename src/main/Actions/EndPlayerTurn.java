@@ -1,9 +1,9 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
+import main.Server.Board;
 
-import static main.MagicNumbers.TURN_CHANGER;
+import static main.Helpers.MagicNumbers.TURN_CHANGER;
 
 public class EndPlayerTurn extends Action {
     public EndPlayerTurn(final ActionsInput action) {

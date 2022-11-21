@@ -1,10 +1,13 @@
-package main;
+package main.Server;
 
 import fileio.ActionsInput;
 import fileio.GameInput;
-import main.Actions.*;
+import main.Actions.Action;
+import main.Actions.GameEnded;
 import main.Cards.Card;
 import main.Cards.Hero;
+import main.Helpers.ActionBuilder;
+import main.Helpers.DeckBuilder;
 
 import java.util.ArrayList;
 

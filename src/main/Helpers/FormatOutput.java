@@ -1,4 +1,4 @@
-package main;
+package main.Helpers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -85,13 +85,11 @@ public final class FormatOutput {
         ArrayNode deckNode = mapper.createArrayNode();
         for (Card card : deck) {
             switch (card.getType()) {
-                case "Environment":
-                    deckNode.add(formatEnvironment((Environment) card));
-                    break;
-                case "Minion":
-                    deckNode.add(formatMinion((Minion) card));
-                    break;
-                default:
+                case "Environment" -> deckNode.add(formatEnvironment((Environment) card));
+                case "Minion" -> deckNode.add(formatMinion((Minion) card));
+                default -> {
+
+                }
             }
         }
         return deckNode;

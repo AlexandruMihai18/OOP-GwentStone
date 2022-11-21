@@ -1,8 +1,8 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
-import main.FormatOutput;
+import main.Helpers.FormatOutput;
+import main.Server.Board;
 
 public final class GetEnvironmentCardsInHand extends Action {
     public GetEnvironmentCardsInHand(final ActionsInput action) {

@@ -1,10 +1,11 @@
-package main;
+package main.Helpers;
 
 import fileio.CardInput;
 import main.Cards.*;
-import static main.CardTypeEnum.*;
 
 import java.util.ArrayList;
+
+import static main.Helpers.CardTypeEnum.*;
 
 public final class DeckBuilder {
     private DeckBuilder() {

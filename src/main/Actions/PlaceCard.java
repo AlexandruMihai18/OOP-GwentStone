@@ -1,15 +1,13 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Board;
 import main.Cards.Card;
 import main.Cards.Minion;
-import main.ErrorHandler;
+import main.Helpers.ErrorHandler;
+import main.Server.Board;
 
-import static main.ErrorHandler.IS_FULL;
-import static main.ErrorHandler.NOT_ENOUGH_MANA;
-import static main.ErrorHandler.NOT_MINION;
-import static main.MagicNumbers.NUMBER_LANES;
+import static main.Helpers.ErrorHandler.*;
+import static main.Helpers.MagicNumbers.NUMBER_LANES;
 
 public final class PlaceCard extends Action {
     public PlaceCard(final ActionsInput action) {
