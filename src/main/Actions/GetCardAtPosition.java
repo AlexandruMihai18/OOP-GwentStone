@@ -1,10 +1,10 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Server.Board;
 import main.Cards.Minion;
 import main.Helpers.ErrorHandler;
 import main.Helpers.FormatOutput;
+import main.Server.Board;
 
 import static main.Helpers.ErrorHandler.NO_CARD;
 

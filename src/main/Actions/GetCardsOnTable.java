@@ -1,8 +1,8 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Server.Board;
 import main.Helpers.FormatOutput;
+import main.Server.Board;
 
 public final class GetCardsOnTable extends Action {
     public GetCardsOnTable(final ActionsInput action) {

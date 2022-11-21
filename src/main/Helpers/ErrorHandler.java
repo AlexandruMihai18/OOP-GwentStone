@@ -1,10 +1,10 @@
 package main.Helpers;
 
 import fileio.Coordinates;
-import main.Server.Board;
 import main.Cards.Card;
 import main.Cards.Hero;
 import main.Cards.Minion;
+import main.Server.Board;
 
 import java.util.ArrayList;
 

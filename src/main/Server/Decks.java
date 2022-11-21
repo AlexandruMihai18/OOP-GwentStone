@@ -1,8 +1,8 @@
 package main.Server;
 
-import main.Cards.Card;
 import fileio.CardInput;
 import fileio.DecksInput;
+import main.Cards.Card;
 import main.Helpers.DeckBuilder;
 
 import java.util.ArrayList;

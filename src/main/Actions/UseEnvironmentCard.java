@@ -1,15 +1,12 @@
 package main.Actions;
 
 import fileio.ActionsInput;
-import main.Server.Board;
 import main.Cards.Card;
 import main.Cards.HeartHound;
 import main.Helpers.ErrorHandler;
+import main.Server.Board;
 
-import static main.Helpers.ErrorHandler.NOT_ENVIRONMENT;
-import static main.Helpers.ErrorHandler.ENVIRONMENT_NOT_ENOUGH_MANA;
-import static main.Helpers.ErrorHandler.CANNOT_STEAL;
-import static main.Helpers.ErrorHandler.NOT_ENEMY_ROW;
+import static main.Helpers.ErrorHandler.*;
 
 public final class UseEnvironmentCard extends Action {
 
