@@ -2,6 +2,8 @@ package main.Cards;
 
 import fileio.CardInput;
 
+import static main.Helpers.MagicNumbers.DISCIPLE_HEALTH;
+
 public final class Disciple extends Minion {
     public Disciple(final CardInput card, final int requiredRow) {
         super(card, requiredRow);
@@ -16,6 +18,6 @@ public final class Disciple extends Minion {
      */
     @Override
     public void ability(final Minion minion) {
-        minion.setHealth(2);
+        minion.setHealth(DISCIPLE_HEALTH);
     }
 }

@@ -4,6 +4,8 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
+import static main.Helpers.MagicNumbers.KOCIORAW_ATTACK;
+
 public final class GeneralKocioraw extends Hero {
     public GeneralKocioraw(final CardInput card) {
         super(card);
@@ -16,7 +18,7 @@ public final class GeneralKocioraw extends Hero {
     @Override
     public void ability(final ArrayList<Minion> lane) {
         for (Minion minion : lane) {
-            minion.setAttackDamage(1);
+            minion.setAttackDamage(KOCIORAW_ATTACK);
         }
     }
 }

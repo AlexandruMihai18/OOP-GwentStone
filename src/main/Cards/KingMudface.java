@@ -4,6 +4,8 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
+import static main.Helpers.MagicNumbers.MUDFACE_HEALTH;
+
 public final class KingMudface extends Hero {
     public KingMudface(final CardInput card) {
         super(card);
@@ -15,7 +17,7 @@ public final class KingMudface extends Hero {
      */
     public void ability(final ArrayList<Minion> lane) {
         for (Minion minion : lane) {
-            minion.setHealth(1);
+            minion.setHealth(MUDFACE_HEALTH);
         }
     }
 }
